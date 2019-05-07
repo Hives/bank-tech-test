@@ -1,5 +1,5 @@
-require 'entry'
-require 'printer'
+require_relative './entry'
+require_relative './printer'
 
 class Account
   def initialize(printer = Printer, entry = Entry)
