@@ -1,9 +1,9 @@
 require 'account'
 
 describe Account do
-  describe '#deposit' do
-    subject(:account) { described_class.new }
+  subject(:account) { described_class.new }
 
+  describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
 
     it "Returns the balance after one deposit made" do
