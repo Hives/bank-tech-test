@@ -4,7 +4,7 @@ class Account
     @balance = 0
   end
 
-  def deposit(amount)
+  def deposit(amount, date)
     update_balance amount
   end
 

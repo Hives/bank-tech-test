@@ -4,15 +4,15 @@ describe Account do
   subject(:account) { described_class.new }
 
   describe '#deposit' do
-    it { is_expected.to respond_to(:deposit).with(1).argument }
+    it { is_expected.to respond_to(:deposit).with(2).argument }
 
     it "Returns the correct balance after one deposit made" do
-      expect(account.deposit(1000)).to eq 1000
+      expect(account.deposit(1000, '07-05-2019')).to eq 1000
     end
 
     it "Returns the correct balance after two deposits made" do
-      account.deposit(2000)
-      expect(account.deposit(1000)).to eq 3000
+      account.deposit(2000, '06-05-2019')
+      expect(account.deposit(1000, '07-05-2019')).to eq 3000
     end
   end
 
@@ -29,6 +29,15 @@ describe Account do
     end
   end
 
+  describe 'updating account' do
+    it "Returns the correct balance after deposits and withdrawals made" do
+      account.deposit(100, '04-05-2019')
+      account.deposit(200, '05-05-2019')
+      account.withdraw(50)
+      expect(account.withdraw(100)).to eq 150
+    end
+  end
+
   describe '#print_statement' do
     it { is_expected.to respond_to(:print_statement).with(0).arguments }
 
@@ -40,15 +49,6 @@ describe Account do
         expect(kernel).to receive(:puts).with "date || credit || debit || balance"
         account.print_statement
       end
-    end
-  end
-
-  describe 'updating account' do
-    it "Returns the correct balance after deposits and withdrawals made" do
-      account.deposit(100)
-      account.deposit(200)
-      account.withdraw(50)
-      expect(account.withdraw(100)).to eq 150
     end
   end
 end
