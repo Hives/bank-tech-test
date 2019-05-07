@@ -29,6 +29,10 @@ describe Account do
     end
   end
 
+  describe '#print_statement' do
+    it { is_expected.to respond_to(:print_statement) }
+  end
+
   describe 'updating account' do
     it "Returns the correct balance after deposits and withdrawals made" do
       account.deposit(100)

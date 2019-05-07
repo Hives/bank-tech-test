@@ -11,6 +11,9 @@ class Account
     update_balance(-amount)
   end
 
+  def print_statement
+  end
+
   private
 
   def update_balance(amount)
