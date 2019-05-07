@@ -50,5 +50,21 @@ describe Account do
         account.print_statement
       end
     end
+
+    context "on an account with two deposits" do
+      it "passes an array with the deposits to the print method" do
+        entry1 = double(:entry)
+        entry2 = double(:entry)
+        entry_class = double(:entry_class)
+        allow(entry_class).to receive(:new)
+          .and_return(entry1, entry2)
+        
+        account = described_class.new(printer, entry_class)
+        account.deposit(100, 'date')
+        account.deposit(200, 'date')
+        expect(printer).to receive(:print).with([entry1, entry2])
+        account.print_statement
+      end
+    end
   end
 end
