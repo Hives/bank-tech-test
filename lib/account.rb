@@ -1,5 +1,9 @@
 class Account
+  def initialize
+    @balance = 0
+  end
+
   def deposit(amount)
-    1000
+    @balance += amount
   end
 end
