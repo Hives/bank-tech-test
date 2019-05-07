@@ -4,10 +4,16 @@ class Account
   end
 
   def deposit(amount)
-    @balance += amount
+    update_balance(amount)
   end
 
   def withdraw(amount)
-    @balance -= amount
+    update_balance(-amount)
+  end
+
+  private
+
+  def update_balance(amount)
+    @balance += amount
   end
 end
