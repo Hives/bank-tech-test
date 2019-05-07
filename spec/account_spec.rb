@@ -22,5 +22,10 @@ describe Account do
     it "Returns the balance after one withdrawal made" do
       expect(account.withdraw(1000)).to eq -1000
     end
+
+    it "Returns the balance after two withdrawals made" do
+      account.withdraw(2000)
+      expect(account.withdraw(1000)).to eq -3000
+    end
   end
 end
