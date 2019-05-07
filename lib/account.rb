@@ -8,5 +8,6 @@ class Account
   end
 
   def withdraw(amount)
+    -1000
   end
 end

@@ -18,5 +18,9 @@ describe Account do
 
   describe '#withdraw' do
     it { is_expected.to respond_to(:withdraw).with(1).argument }
+
+    it "Returns the balance after one withdrawal made" do
+      expect(account.withdraw(1000)).to eq -1000
+    end
   end
 end
