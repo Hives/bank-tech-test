@@ -22,11 +22,11 @@ Verbs
 In irb:
 ```ruby
 > account = Account.new
-> account.deposit(1000, 10-01-2012)
+> account.deposit(1000, 10/01/2012)
  => 1000.00
-> account.deposit(2000, 13-01-2012)
+> account.deposit(2000, 13/01/2012)
  => 3000.00
-> account.withdraw(500, 14-01-2012)
+> account.withdraw(500, 14/01/2012)
  => 2500.00
 > account.print_statement
 date || credit || debit || balance
