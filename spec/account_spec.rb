@@ -15,4 +15,8 @@ describe Account do
       expect(account.deposit(1000)).to eq 3000
     end
   end
+
+  describe '#withdraw' do
+    it { is_expected.to respond_to(:withdraw).with(1).argument }
+  end
 end
