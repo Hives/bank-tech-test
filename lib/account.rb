@@ -4,12 +4,12 @@ class Account
     @balance = 0
   end
 
-  def deposit(amount, date)
-    update_balance amount
+  def deposit(amount, _date)
+    update_balance(amount)
   end
 
   def withdraw(amount)
-    update_balance -amount
+    update_balance(-amount)
   end
 
   def print_statement

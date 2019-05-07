@@ -20,12 +20,12 @@ describe Account do
     it { is_expected.to respond_to(:withdraw).with(1).argument }
 
     it "Returns the correct balance after one withdrawal made" do
-      expect(account.withdraw(1000)).to eq -1000
+      expect(account.withdraw(1000)).to eq(-1000)
     end
 
     it "Returns the correct balance after two withdrawals made" do
       account.withdraw(2000)
-      expect(account.withdraw(1000)).to eq -3000
+      expect(account.withdraw(1000)).to eq(-3000)
     end
   end
 
