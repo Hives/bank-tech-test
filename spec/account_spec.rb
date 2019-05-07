@@ -39,39 +39,14 @@ describe Account do
   end
 
   describe '#print_statement' do
+    let(:printer) { double(:printer) }
+
     it { is_expected.to respond_to(:print_statement).with(0).arguments }
 
-    let(:kernel) { double('kernel double') }
-    subject(:account) { described_class.new(kernel) }
-
-    context "When no deposits or withdrawals made" do
-      it "puts out the statement header" do
-        expect(kernel).to receive(:puts).with "date || credit || debit || balance"
-        account.print_statement
-      end
-    end
-
-    context "When one deposit has been made" do
-      it "puts out the statement header and entry details" do
-        account.deposit(1000, "07/05/2019")
-        expect(kernel).to receive(:puts)
-          .with("date || credit || debit || balance").ordered
-        expect(kernel).to receive(:puts)
-          .with("07/05/2019 || 1000.00 || || 1000.00").ordered
-        account.print_statement
-      end
-    end
-
-    context "When two deposits have been made" do
-      it "puts out the statement header and entry details in correct order" do
-        account.deposit(1000, "06/05/2019")
-        account.deposit(500, "07/05/2019")
-        expect(kernel).to receive(:puts)
-          .with("date || credit || debit || balance").ordered
-        expect(kernel).to receive(:puts)
-          .with("07/05/2019 || 500.00 || || 1500.00").ordered
-        expect(kernel).to receive(:puts)
-          .with("06/05/2019 || 1000.00 || || 1000.00").ordered
+    context "on a new account" do
+      it "passes an empty array to the print method" do
+        account = described_class.new(printer)
+        expect(printer).to receive(:print).with([])
         account.print_statement
       end
     end

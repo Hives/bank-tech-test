@@ -1,4 +1,4 @@
-class Printer
+module Printer
   def self.print(entries)
     puts "date || credit || debit || balance"
   end
