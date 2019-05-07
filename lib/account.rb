@@ -1,17 +1,17 @@
+require 'entry'
 require 'printer'
 
 class Account
-  def initialize(printer = Printer)
+  def initialize(printer = Printer, entry = Entry)
     @printer = printer
+    @entry = entry
     @balance = 0
     @entries = []
   end
 
   def deposit(amount, date)
     update_balance(amount)
-    @entries.push({ amount: amount,
-                    date: date,
-                    balance: @balance })
+    @entries.push(@entry.new(amount, date, @balance))
     @balance
   end
 
@@ -21,10 +21,6 @@ class Account
 
   def print_statement
     @printer.print(@entries)
-    # @kernel.puts "date || credit || debit || balance"
-    # @entries.reverse.each do |entry|
-    #   @kernel.puts "#{entry[:date]} || #{sprintf('%.2f', entry[:amount])} || || #{sprintf('%.2f', entry[:balance])}"
-    # end
   end
 
   private
