@@ -30,7 +30,17 @@ describe Account do
   end
 
   describe '#print_statement' do
-    it { is_expected.to respond_to(:print_statement) }
+    it { is_expected.to respond_to(:print_statement).with(0).arguments }
+
+    let(:kernel) { double('kernel double') }
+    subject(:account) { described_class.new(kernel) }
+
+    context "When no deposits or withdrawals made" do
+      it "puts out the statement header" do
+        expect(kernel).to receive(:puts).with "date || credit || debit || balance"
+        account.print_statement
+      end
+    end
   end
 
   describe 'updating account' do
