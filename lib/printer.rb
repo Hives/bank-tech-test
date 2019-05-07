@@ -1,4 +1,4 @@
 class Printer
-  def self.print
+  def self.print(entries)
   end
 end
