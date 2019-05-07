@@ -50,5 +50,16 @@ describe Account do
         account.print_statement
       end
     end
+
+    context "When one deposit has been made" do
+      it "puts out the statement header and entry details" do
+        account.deposit(1000, "07-05-2019")
+        expect(kernel).to receive(:puts)
+          .with("date || credit || debit || balance").ordered
+        expect(kernel).to receive(:puts)
+          .with("07/05/2019 || 1000.00 || || 1000.00").ordered
+        account.print_statement
+      end
+    end
   end
 end

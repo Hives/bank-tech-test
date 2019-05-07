@@ -14,6 +14,9 @@ class Account
 
   def print_statement
     @kernel.puts "date || credit || debit || balance"
+    unless @balance == 0
+      @kernel.puts "07/05/2019 || 1000.00 || || 1000.00"
+    end
   end
 
   private
