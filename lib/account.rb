@@ -2,10 +2,15 @@ class Account
   def initialize(kernel = Kernel)
     @kernel = kernel
     @balance = 0
+    @entries = []
   end
 
-  def deposit(amount, _date)
+  def deposit(amount, date)
     update_balance(amount)
+    @entries.push({ amount: amount,
+                    date: date.gsub('-', '/'),
+                    balance: @balance })
+    @balance
   end
 
   def withdraw(amount)
@@ -14,8 +19,8 @@ class Account
 
   def print_statement
     @kernel.puts "date || credit || debit || balance"
-    unless @balance == 0
-      @kernel.puts "07/05/2019 || 1000.00 || || 1000.00"
+    @entries.reverse.each do |entry|
+      @kernel.puts "#{entry[:date]} || #{sprintf('%.2f', entry[:amount])} || || #{sprintf('%.2f', entry[:balance])}"
     end
   end
 

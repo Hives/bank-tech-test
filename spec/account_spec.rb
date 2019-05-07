@@ -61,5 +61,19 @@ describe Account do
         account.print_statement
       end
     end
+
+    context "When two deposits have been made" do
+      it "puts out the statement header and entry details in correct order" do
+        account.deposit(1000, "06-05-2019")
+        account.deposit(500, "07-05-2019")
+        expect(kernel).to receive(:puts)
+          .with("date || credit || debit || balance").ordered
+        expect(kernel).to receive(:puts)
+          .with("07/05/2019 || 500.00 || || 1500.00").ordered
+        expect(kernel).to receive(:puts)
+          .with("06/05/2019 || 1000.00 || || 1000.00").ordered
+        account.print_statement
+      end
+    end
   end
 end
