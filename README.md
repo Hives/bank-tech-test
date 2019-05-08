@@ -2,7 +2,38 @@
 
 *[Instructions](instructions.md)*
 
-## Nouns and verbs
+## Installation
+
+1. Clone this repo
+2. `bundle install`
+
+## Instructions
+
+Open the program in irb with `irb -r ./lib/account.rb`. Then:
+
+```
+> account = Account.new
+ => #<Account:0x000...>
+> account.deposit(1000)
+ => 1000
+> account.deposit(200)
+ => 1200
+> account.withdraw(80)
+ => 1120
+> account.print_statement
+date || credit || debit || balance
+08/05/2019 || || 80.00 || 1120.00
+08/05/2019 || 200.00 || || 1200.00
+08/05/2019 || 1000.00 || || 1000.00
+ => nil
+```
+
+## Running the tests
+
+From the project root run `rspec`.
+
+## Planning
+### Nouns and verbs
 
 Nouns
 - client
@@ -17,7 +48,7 @@ Verbs
 - (make a) withdrawal
 - print
 
-## Feature spec
+### Feature spec
 
 In irb:
 ```
@@ -35,3 +66,10 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
  => nil
 ```
+
+## Reflections
+
+- I had an idea in advance that I might need some sort of printing class, and possibly an entry class, but I waited until my code required them before extracting them from my Account class.
+- I started off without feature tests as I only had one class, but once I started to extract more classes I added feature tests to check the overall behaviour of the program.
+- I started off by requiring the user to specify the date of a deposit or withdrawal for simplicity's sake, and later updated the code to use the current date, controlling this in my tests using the Timecop gem. This wasn't a difficult process, but overall I think it would have been more efficient to implement dates properly from the start.
+- Formatting of entry amounts to 2 decimal places is currently responsibility of the Entry class. That's presentational logic though - would it be better in the Printer class, or in its own EntryPrinter class?
