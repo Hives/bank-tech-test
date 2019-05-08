@@ -15,8 +15,10 @@ class Account
     @balance
   end
 
-  def withdraw(amount)
+  def withdraw(amount, date)
     update_balance(-amount)
+    @entries.push(@entry.new(-amount, date, @balance))
+    @balance
   end
 
   def print_statement
