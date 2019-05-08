@@ -8,13 +8,13 @@ module Printer
     end
   end
 
-  private
+  private_class_method
 
-  def self.format_entry(e)
-    output = ["#{e.date} "]
-    output << (e.credit ? " #{e.credit} " : " ")
-    output << (e.debit ? " #{e.debit} " : " ")
-    output << " #{e.balance}"
+  def self.format_entry(entry)
+    output = ["#{entry.date} "]
+    output << (entry.credit ? " #{entry.credit} " : " ")
+    output << (entry.debit ? " #{entry.debit} " : " ")
+    output << " #{entry.balance}"
     output.join("||")
   end
 end
