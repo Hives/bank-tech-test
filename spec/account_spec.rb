@@ -4,8 +4,6 @@ describe Account do
   subject(:account) { described_class.new }
 
   describe '#deposit' do
-    it { is_expected.to respond_to(:deposit).with(1).argument }
-
     it "Returns the correct balance after one deposit made" do
       expect(account.deposit(1000)).to eq 1000
     end
@@ -26,8 +24,6 @@ describe Account do
   end
 
   describe '#withdraw' do
-    it { is_expected.to respond_to(:withdraw).with(1).argument }
-
     it "Returns the correct balance after one withdrawal made" do
       expect(account.withdraw(1000)).to eq(-1000)
     end
@@ -58,8 +54,6 @@ describe Account do
 
   describe '#print_statement' do
     let(:printer) { double(:printer) }
-
-    it { is_expected.to respond_to(:print_statement).with(0).arguments }
 
     context "on a new account" do
       it "passes an empty array to the print method" do

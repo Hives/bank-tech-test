@@ -10,43 +10,6 @@ describe 'Feature tests' do
     account.print_statement
   end
 
-  it 'prints the header and entry details after a deposit' do
-    account = Account.new
-    Timecop.freeze(date1)
-    account.deposit(200)
-    expect(STDOUT).to receive(:puts)
-      .with("date || credit || debit || balance").ordered
-    expect(STDOUT).to receive(:puts)
-      .with("10/01/2012 || 200.00 || || 200.00").ordered
-    account.print_statement
-  end
-
-  it 'prints the header and entry details in the right order after two deposits' do
-    account = Account.new
-    Timecop.freeze(date1)
-    account.deposit(200)
-    Timecop.freeze(date2)
-    account.deposit(400)
-    expect(STDOUT).to receive(:puts)
-      .with("date || credit || debit || balance").ordered
-    expect(STDOUT).to receive(:puts)
-      .with("13/01/2012 || 400.00 || || 600.00").ordered
-    expect(STDOUT).to receive(:puts)
-      .with("10/01/2012 || 200.00 || || 200.00").ordered
-    account.print_statement
-  end
-
-  it 'prints the header and entry details after a withdrawal' do
-    account = Account.new
-    Timecop.freeze(date1)
-    account.withdraw(200)
-    expect(STDOUT).to receive(:puts)
-      .with("date || credit || debit || balance").ordered
-    expect(STDOUT).to receive(:puts)
-      .with("10/01/2012 || || 200.00 || -200.00").ordered
-    account.print_statement
-  end
-
   it 'prints the correct statement after deposits and withdrawals' do
     account = Account.new
     Timecop.freeze(date1)
