@@ -9,15 +9,15 @@ class Account
     @entries = []
   end
 
-  def deposit(amount, date)
+  def deposit(amount)
     update_balance(amount)
-    @entries.push(@entry.new(amount, date, @balance))
+    @entries.push(@entry.new(amount, Time.now, @balance))
     @balance
   end
 
-  def withdraw(amount, date)
+  def withdraw(amount)
     update_balance(-amount)
-    @entries.push(@entry.new(-amount, date, @balance))
+    @entries.push(@entry.new(-amount, Time.now, @balance))
     @balance
   end
 

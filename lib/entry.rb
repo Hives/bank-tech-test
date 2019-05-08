@@ -14,6 +14,6 @@ class Entry
   end
 
   def date
-    @date
+    @date.strftime "%d/%m/%Y"
   end
 end
