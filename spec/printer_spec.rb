@@ -24,11 +24,9 @@ describe Printer do
       allow(transaction2).to receive(:debit).and_return "300.00"
 
       expect(STDOUT).to receive(:puts)
-        .with("date || credit || debit || balance").ordered
-      expect(STDOUT).to receive(:puts)
-        .with("07/05/2019 || || 300.00 || 400.00").ordered
-      expect(STDOUT).to receive(:puts)
-        .with("06/05/2019 || 100.00 || || 100.00").ordered
+        .with("date || credit || debit || balance\n"\
+              "07/05/2019 || || 300.00 || 400.00\n"\
+              "06/05/2019 || 100.00 || || 100.00")
       Printer.print([transaction1, transaction2])
     end
   end

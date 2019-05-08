@@ -2,10 +2,10 @@ module Printer
   HEADER = "date || credit || debit || balance"
 
   def self.print(transactions)
-    puts HEADER
-    transactions.reverse.each do |transaction|
-      puts format_entry(transaction)
-    end
+    rows = transactions.reverse.map do |transaction|
+      "\n" + format_entry(transaction)
+    end.join
+    puts HEADER + rows
   end
 
   private_class_method
