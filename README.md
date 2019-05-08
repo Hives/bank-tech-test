@@ -20,7 +20,7 @@ Verbs
 ## Feature spec
 
 In irb:
-```ruby
+```
 > account = Account.new
 > account.deposit(1000, 10/01/2012)
  => 1000.00
