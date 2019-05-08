@@ -1,6 +1,8 @@
 module Printer
+  HEADER = "date || credit || debit || balance"
+
   def self.print(entries)
-    puts "date || credit || debit || balance"
+    puts HEADER
     entries.reverse.each do |entry|
       puts format_entry(entry)
     end

@@ -23,6 +23,7 @@ class Account
 
   def print_statement
     @printer.print(@entries)
+    nil
   end
 
   private
