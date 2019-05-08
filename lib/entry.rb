@@ -1,9 +1,9 @@
 class Entry
   def initialize(amount, balance, date)
     @balance = balance
-    @credit = amount > 0 ? amount : nil
+    @credit = amount.positive? ? amount : nil
     @date = date
-    @debit = amount < 0 ? amount.abs : nil
+    @debit = amount.negative? ? amount.abs : nil
   end
 
   def credit

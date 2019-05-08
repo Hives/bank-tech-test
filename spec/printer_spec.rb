@@ -10,7 +10,7 @@ describe Printer do
       Printer.print([])
     end
 
-    it "`puts` out the header and entry in the right order if deposit and withdrawal" do
+    it "`puts` out the header and entries in the right order" do
       entry1 = double(:entry1)
       allow(entry1).to receive(:balance).and_return "100.00"
       allow(entry1).to receive(:date).and_return "06/05/2019"
