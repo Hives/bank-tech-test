@@ -1,20 +1,20 @@
 module Printer
   HEADER = "date || credit || debit || balance"
 
-  def self.print(entries)
+  def self.print(transactions)
     puts HEADER
-    entries.reverse.each do |entry|
-      puts format_entry(entry)
+    transactions.reverse.each do |transaction|
+      puts format_entry(transaction)
     end
   end
 
   private_class_method
 
-  def self.format_entry(entry)
-    output = ["#{entry.date} "]
-    output << (entry.credit ? " #{entry.credit} " : " ")
-    output << (entry.debit ? " #{entry.debit} " : " ")
-    output << " #{entry.balance}"
+  def self.format_entry(transaction)
+    output = ["#{transaction.date} "]
+    output << (transaction.credit ? " #{transaction.credit} " : " ")
+    output << (transaction.debit ? " #{transaction.debit} " : " ")
+    output << " #{transaction.balance}"
     output.join("||")
   end
 end

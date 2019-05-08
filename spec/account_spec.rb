@@ -13,12 +13,12 @@ describe Account do
       expect(account.deposit(1000)).to eq 3000
     end
 
-    it "Creates an entry with the correct parameters" do
-      entry_class = double(:entry_class)
+    it "Creates a transaction with the correct parameters" do
+      transaction_class = double(:transaction_class)
       printer = double(:printer)
-      account = described_class.new(printer, entry_class)
+      account = described_class.new(printer, transaction_class)
       Timecop.freeze()
-      expect(entry_class).to receive(:new).with(1, 1, Time.now) 
+      expect(transaction_class).to receive(:new).with(1, 1, Time.now) 
       account.deposit(1)
     end
   end
@@ -33,12 +33,12 @@ describe Account do
       expect(account.withdraw(1000)).to eq(-3000)
     end
 
-    it "Creates an entry with the correct parameters" do
-      entry_class = double(:entry_class)
+    it "Creates a transaction with the correct parameters" do
+      transaction_class = double(:transaction_class)
       printer = double(:printer)
-      account = described_class.new(printer, entry_class)
+      account = described_class.new(printer, transaction_class)
       Timecop.freeze()
-      expect(entry_class).to receive(:new).with(-1, -1, Time.now)
+      expect(transaction_class).to receive(:new).with(-1, -1, Time.now)
       account.withdraw(1)
     end
   end
@@ -65,16 +65,16 @@ describe Account do
 
     context "on an account with a deposit and a withdrawal" do
       it "passes an array with the deposits to the print method" do
-        entry1 = double(:entry)
-        entry2 = double(:entry)
-        entry_class = double(:entry_class)
-        allow(entry_class).to receive(:new)
-          .and_return(entry1, entry2)
+        transaction1 = double(:transaction)
+        transaction2 = double(:transaction)
+        transaction_class = double(:transaction_class)
+        allow(transaction_class).to receive(:new)
+          .and_return(transaction1, transaction2)
         
-        account = described_class.new(printer, entry_class)
+        account = described_class.new(printer, transaction_class)
         account.deposit(100)
         account.withdraw(200)
-        expect(printer).to receive(:print).with([entry1, entry2])
+        expect(printer).to receive(:print).with([transaction1, transaction2])
         account.print_statement
       end
     end

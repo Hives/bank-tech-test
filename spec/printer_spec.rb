@@ -11,17 +11,17 @@ describe Printer do
     end
 
     it "`puts` out the header and entries in the right order" do
-      entry1 = double(:entry1)
-      allow(entry1).to receive(:balance).and_return "100.00"
-      allow(entry1).to receive(:date).and_return "06/05/2019"
-      allow(entry1).to receive(:credit).and_return "100.00"
-      allow(entry1).to receive(:debit).and_return nil
+      transaction1 = double(:transaction1)
+      allow(transaction1).to receive(:balance).and_return "100.00"
+      allow(transaction1).to receive(:date).and_return "06/05/2019"
+      allow(transaction1).to receive(:credit).and_return "100.00"
+      allow(transaction1).to receive(:debit).and_return nil
 
-      entry2 = double(:entry2)
-      allow(entry2).to receive(:balance).and_return "400.00"
-      allow(entry2).to receive(:date).and_return "07/05/2019"
-      allow(entry2).to receive(:credit).and_return nil
-      allow(entry2).to receive(:debit).and_return "300.00"
+      transaction2 = double(:transaction2)
+      allow(transaction2).to receive(:balance).and_return "400.00"
+      allow(transaction2).to receive(:date).and_return "07/05/2019"
+      allow(transaction2).to receive(:credit).and_return nil
+      allow(transaction2).to receive(:debit).and_return "300.00"
 
       expect(STDOUT).to receive(:puts)
         .with("date || credit || debit || balance").ordered
@@ -29,7 +29,7 @@ describe Printer do
         .with("07/05/2019 || || 300.00 || 400.00").ordered
       expect(STDOUT).to receive(:puts)
         .with("06/05/2019 || 100.00 || || 100.00").ordered
-      Printer.print([entry1, entry2])
+      Printer.print([transaction1, transaction2])
     end
   end
 end

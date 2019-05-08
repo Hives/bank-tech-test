@@ -2,6 +2,8 @@
 
 *[Instructions](instructions.md)*
 
+<img src='images/bank-tech-test.png'>
+
 ## Installation
 
 1. Clone this repo
@@ -31,6 +33,10 @@ date || credit || debit || balance
 ## Running the tests
 
 From the project root run `rspec`.
+
+## My approach
+
+I've got three classes. The Account class holds your account details and the methods for interacting with it. The Entry class is used for storing individual credits or debits, and methods to present its details in a human readable format. The Printer class contains methods to print your bank statement.
 
 ## Planning
 ### Nouns and verbs

@@ -1,4 +1,4 @@
-class Entry
+class Transaction
   def initialize(amount, balance, date)
     @balance = balance
     @credit = amount.positive? ? amount : nil

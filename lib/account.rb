@@ -1,12 +1,12 @@
-require_relative './entry'
+require_relative './transaction'
 require_relative './printer'
 
 class Account
-  def initialize(printer = Printer, entry = Entry)
+  def initialize(printer = Printer, transaction = Transaction)
     @printer = printer
-    @entry = entry
+    @transaction = transaction
     @balance = 0
-    @entries = []
+    @transactions = []
   end
 
   def deposit(amount)
@@ -20,7 +20,7 @@ class Account
   end
 
   def print_statement
-    @printer.print(@entries)
+    @printer.print(@transactions)
     nil
   end
 
@@ -28,7 +28,7 @@ class Account
 
   def update_account(amount)
     @balance += amount
-    @entries.push(@entry.new(amount, @balance, Time.now))
+    @transactions.push(@transaction.new(amount, @balance, Time.now))
   end
 
 end
