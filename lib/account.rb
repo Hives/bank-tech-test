@@ -10,13 +10,13 @@ class Account
   end
 
   def deposit(amount)
-    update_balance(amount)
+    increase_balance(amount)
     @entries.push(@entry.new(amount, @balance, Time.now))
     @balance
   end
 
   def withdraw(amount)
-    update_balance(-amount)
+    decrease_balance(amount)
     @entries.push(@entry.new(-amount, @balance, Time.now))
     @balance
   end
@@ -27,7 +27,11 @@ class Account
 
   private
 
-  def update_balance(amount)
+  def increase_balance(amount)
     @balance += amount
+  end
+
+  def decrease_balance(amount)
+    @balance -= amount
   end
 end
