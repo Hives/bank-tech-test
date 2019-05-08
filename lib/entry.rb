@@ -1,12 +1,17 @@
 class Entry
-  def initialize(amount, date, balance)
-    @amount = amount
+  def initialize(amount, balance, date)
     @balance = balance
+    @credit = amount > 0 ? amount : nil
     @date = date
+    @debit = amount < 0 ? amount.abs : nil
   end
 
-  def amount
-    format_two_decimal_places(@amount)
+  def credit
+    @credit ? format_two_decimal_places(@credit) : nil
+  end
+
+  def debit
+    @debit ? format_two_decimal_places(@debit) : nil
   end
 
   def balance

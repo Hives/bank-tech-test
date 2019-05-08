@@ -20,7 +20,7 @@ describe Account do
       printer = double(:printer)
       account = described_class.new(printer, entry_class)
       Timecop.freeze()
-      expect(entry_class).to receive(:new).with(1, Time.now, 1) 
+      expect(entry_class).to receive(:new).with(1, 1, Time.now) 
       account.deposit(1)
     end
   end
@@ -42,7 +42,7 @@ describe Account do
       printer = double(:printer)
       account = described_class.new(printer, entry_class)
       Timecop.freeze()
-      expect(entry_class).to receive(:new).with(-1, Time.now, -1) 
+      expect(entry_class).to receive(:new).with(-1, -1, Time.now)
       account.withdraw(1)
     end
   end
