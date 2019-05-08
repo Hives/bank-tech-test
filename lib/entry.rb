@@ -6,14 +6,20 @@ class Entry
   end
 
   def amount
-    sprintf('%.2f', @amount)
+    format_two_decimal_places(@amount)
   end
 
   def balance
-    sprintf('%.2f', @balance)
+    format_two_decimal_places(@balance)
   end
 
   def date
     @date.strftime "%d/%m/%Y"
+  end
+
+  private
+
+  def format_two_decimal_places(number)
+    sprintf('%.2f', number)
   end
 end
