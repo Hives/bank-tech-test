@@ -10,18 +10,18 @@ describe Printer do
       Printer.print([])
     end
 
-    it "`puts` out the header and entries in the right order" do
+    it "`puts` out the header, a credit and a debit in the right order" do
       transaction1 = double(:transaction1)
-      allow(transaction1).to receive(:balance).and_return "100.00"
       allow(transaction1).to receive(:date).and_return "06/05/2019"
       allow(transaction1).to receive(:credit).and_return "100.00"
       allow(transaction1).to receive(:debit).and_return nil
+      allow(transaction1).to receive(:balance).and_return "100.00"
 
       transaction2 = double(:transaction2)
-      allow(transaction2).to receive(:balance).and_return "400.00"
       allow(transaction2).to receive(:date).and_return "07/05/2019"
       allow(transaction2).to receive(:credit).and_return nil
       allow(transaction2).to receive(:debit).and_return "300.00"
+      allow(transaction2).to receive(:balance).and_return "400.00"
 
       expect(STDOUT).to receive(:puts)
         .with("date || credit || debit || balance\n"\
