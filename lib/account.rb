@@ -4,7 +4,8 @@ class Account
 
   attr_reader :transactions
 
-  Transaction = Struct.new(:date, :credit, :debit, :balance)
+  Transaction = Struct.new(:date, :credit, :debit, :balance,
+                           keyword_init: true)
 
   def initialize(formatter = Formatter, transaction = Transaction)
     @formatter = formatter
@@ -14,13 +15,19 @@ class Account
 
   def deposit(amount)
     update_balance(amount)
-    @transactions.push(Transaction.new(Time.now, amount, nil, @balance))
+    @transactions.push(Transaction.new(date: Time.now,
+                                       credit: amount,
+                                       debit: nil,
+                                       balance: @balance))
     @balance
   end
 
   def withdraw(amount)
     update_balance(-amount)
-    @transactions.push(Transaction.new(Time.now, nil, amount, @balance))
+    @transactions.push(Transaction.new(date: Time.now,
+                                       credit: nil,
+                                       debit: amount,
+                                       balance: @balance))
     @balance
   end
 
