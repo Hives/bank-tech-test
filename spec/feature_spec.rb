@@ -1,8 +1,4 @@
 describe 'Feature tests' do
-  let(:date1) { Time.local(2012, 01, 10, 11, 0, 0) }
-  let(:date2) { Time.local(2012, 01, 13, 11, 0, 0) }
-  let(:date3) { Time.local(2012, 01, 14, 11, 0, 0) }
-
   it 'prints just the header for a new account' do
     account = Account.new
     expect(STDOUT).to receive(:puts)
@@ -12,11 +8,11 @@ describe 'Feature tests' do
 
   it 'prints the correct statement after deposits and withdrawals' do
     account = Account.new
-    Timecop.freeze(date1)
+    Timecop.freeze(Time.local(2012, 01, 10))
     account.deposit(1000)
-    Timecop.freeze(date2)
+    Timecop.freeze(Time.local(2012, 01, 13))
     account.deposit(2000)
-    Timecop.freeze(date3)
+    Timecop.freeze(Time.local(2012, 01, 14))
     account.withdraw(500)
     expect(STDOUT).to receive(:puts)
       .with("date || credit || debit || balance\n"\
