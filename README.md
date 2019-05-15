@@ -36,7 +36,7 @@ From the project root run `rspec`.
 
 ## My approach
 
-I've got three classes. The Account class holds your account details and the methods for interacting with it. The Entry class is used for storing individual credits or debits, and methods to present its details in a human readable format. The Printer class contains methods to print your bank statement.
+I've got one class, one module, and a struct. The Account class holds stores your account details (transactions and balance) and the methods for interacting with it. The Formatter module contains a method for formatting transactions into a bank statement. Inside the Account class is a Transaction struct which stores details of individual transactions.
 
 ## Planning
 ### Nouns and verbs
@@ -78,4 +78,3 @@ date || credit || debit || balance
 - I had an idea in advance that I might need some sort of printing class, and possibly an entry class, but I waited until my code required them before extracting them from my Account class.
 - I started off without feature tests as I only had one class, but once I started to extract more classes I added feature tests to check the overall behaviour of the program.
 - I started off by requiring the user to specify the date of a deposit or withdrawal for simplicity's sake, and later updated the code to use the current date, controlling this in my tests using the Timecop gem. This wasn't a difficult process, but overall I think it would have been more efficient to implement dates properly from the start.
-- Formatting of entry amounts to 2 decimal places is currently responsibility of the Entry class. That's presentational logic though - would it be better in the Printer class, or in its own EntryPrinter class?
